@@ -23,6 +23,8 @@ namespace Completed
         private bool playerMoving = false;
         private Animator animator;                  //Used to store a reference to the Player's animator component.
         private int food;                           //Used to store player food points total during level.
+
+        public AudioSource Step;
 #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
         private Vector2 touchOrigin = -Vector2.one;	//Used to store location of screen touch origin for mobile controls.
 #endif
@@ -33,12 +35,6 @@ namespace Completed
         {
             //Get a component reference to the Player's animator component
             animator = GetComponent<Animator>();
-
-            //Get the current food point total stored in GameManager.instance between levels.
-            //food = GameManager.instance.playerFoodPoints;
-
-            //Set the foodText to reflect the current player food total.
-            //foodText.text = "Food: " + food;
 
             //Call the Start function of the MovingObject base class.
             base.Start();
@@ -159,19 +155,12 @@ namespace Completed
             //Call the AttemptMove method of the base class, passing in the component T (in this case Wall) and x and y direction to move.
             
             bool canMove = base.AttemptMove(xDir, yDir, out hit);
-            
+
             if (canMove)
+            {
+                Step.Play();
                 playerMoving = true;
-
-
-            //If Move returns true, meaning Player was able to move into an empty space.
-
-
-            //if (Move(xDir, yDir, out hit))
-            //{
-            //Call RandomizeSfx of SoundManager to play the move sound, passing in two audio clips to choose from.
-            //SoundManager.instance.RandomizeSfx(moveSound1, moveSound2);
-            //}
+            }
 
 
             //Since the player has moved and lost food points, check if the game has ended.

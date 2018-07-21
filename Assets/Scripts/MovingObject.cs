@@ -15,7 +15,6 @@ namespace Completed
         private float inverseMoveTime;          //Used to make movement more efficient.
         protected int orientation = (int)Orientation.DOWN;
 
-
         //Protected, virtual functions can be overridden by inheriting classes.
         protected virtual void Start()
         {
@@ -55,7 +54,7 @@ namespace Completed
             if (hit.transform == null)
             {
                 //If nothing was hit, start SmoothMovement co-routine passing in the Vector2 end as destination
-                StartCoroutine(SmoothMovement(end));
+                StartCoroutine(SmoothMovement(end));                
 
                 //Return true to say that Move was successful
                 return true;
