@@ -25,6 +25,7 @@ namespace Completed
         private int food;                           //Used to store player food points total during level.
 
         public AudioSource Step;
+        public AudioSource BlockedMovement;
 #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
         private Vector2 touchOrigin = -Vector2.one;	//Used to store location of screen touch origin for mobile controls.
 #endif
@@ -177,6 +178,7 @@ namespace Completed
         //It takes a generic parameter T which in the case of Player is a Wall which the player can attack and destroy.
         protected override void OnCantMove()
         {
+            BlockedMovement.Play();
             //Set hitWall to equal the component passed in as a parameter.
             //Wall hitWall = component as Wall;
 
